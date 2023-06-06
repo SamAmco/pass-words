@@ -4,25 +4,6 @@ Who says you can't use lowercase words for passwords!
 
 pass-words is a simple command line application I threw together in rust that generates passwords using random short English words.
 
-First clone the repo and then run `make && make install`. You will need rust and cargo installed. 
-
-## User guide 
-
-Just run: 
-
-`pass-words <num_lines> [num_iterations]`
-
-e.g.
-
-```
-pass-words 4 3
-chyak bugle brugh unson chyakbuglebrughunson
-libra tilda sate atony  libratildasateatony
-vinas campo dard kappa  vinascampodardkappa
-```
-
-Granted I've never heard of most of the words. They are all the words from https://github.com/dwyl/english-words that are 5 characters or less and containing characters a-z only.
-
 ## Why use words?
 
 Words are convenient to remember for a short period of time. If I need to share a password with someone, it's not a pain to read it out to them. If I want to remember it for later in the day, I usually can.
@@ -41,3 +22,24 @@ Let's assume your adversary can brute force 100 trillion passwords per second it
 It's unlikely anyone would direct that much computing power at cracking your password but it's good practice to change your passwords every few years as well anyway. 
 
 Really though use this at your own risk DYOR and all that.
+
+## Ok how do I use it?
+
+First clone the repo and then run `make && make install`. You will need rust and cargo installed. 
+
+The makefile will install to `$HOME/.local/bin` If you're using an OS other than Linux may god have mercy on your soul.
+
+Then just run: 
+
+`pass-words <num_lines> [num_iterations]`
+
+e.g.
+
+```
+pass-words 4 3
+chyak bugle brugh unson chyakbuglebrughunson
+libra tilda sate atony  libratildasateatony
+vinas campo dard kappa  vinascampodardkappa
+```
+
+Granted I've never heard of most of the words. They are all the words from https://github.com/dwyl/english-words that are 5 characters or less and containing characters a-z only.
