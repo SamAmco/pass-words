@@ -20,7 +20,7 @@ use std::env;
 
 fn main() {
     // Read the text file
-    let file_contents = include_bytes!("assets/words.txt");
+    let file_contents = include_bytes!("assets/words-10000.txt");
     let file_str = String::from_utf8_lossy(file_contents);
 
     // Parse command-line arguments
