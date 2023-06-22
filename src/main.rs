@@ -64,4 +64,7 @@ fn main() {
     println!();
     println!("Selected {} words out of a list of size {}", selected_words, word_list_size);
     println!("At 100 trillion checks per second this password could be cracked in {} years", time_to_crack_years);
+    println!("At 1 billion checks per second this password could be cracked in {} years", time_to_crack_years * 100_000.0);
+    println!("At 1 million checks per second this password could be cracked in {} years", time_to_crack_years * 100_000_000.0);
+
 }
