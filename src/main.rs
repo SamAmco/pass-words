@@ -51,4 +51,17 @@ fn main() {
         print!("\t");
         println!("{}", selected_lines.join("").to_lowercase());
     }
+
+    let word_list_size = lines.len() as f64;
+    let selected_words = num_lines as f64;
+    //100 trillion checks per second
+    let power = 100_000_000_000_000.0 as f64;
+    let permutations = word_list_size.powf(selected_words);
+    let time_to_crack_seconds = (permutations as f64) / power;
+    let seconds_per_year = (60 * 60 * 24 * 365) as f64;
+    //On average it will take half the time it takes to check all the permutations
+    let time_to_crack_years = time_to_crack_seconds / (2.0 * seconds_per_year);
+    println!();
+    println!("Selected {} words out of a list of size {}", selected_words, word_list_size);
+    println!("At 100 trillion checks per second this password could be cracked in {} years", time_to_crack_years);
 }
