@@ -2,11 +2,11 @@ use rand::seq::SliceRandom;
 use std::env;
 
 //Some notes on my calculations here. There are 37315 words in the file.
-//You can get that by doing: 
+//You can get that by doing:
 //grep -E '^.{1,5}$' words.txt | grep -E '^[a-zA-Z]+$' | sed 's/.*/\L&/' | uniq
 //on the original file which is also stored in the assets folder
 //
-//Assuming a computer can do 100th/s It would take on average 22.9/2 = 11.45 years 
+//Assuming a computer can do 100th/s It would take on average 22.9/2 = 11.45 years
 //to crack a 5 word password.
 //You can get that by doing: (((37315 ^ 5)) / 100000000000000) / (60 * 60 * 24 * 365)
 //
@@ -32,8 +32,13 @@ fn main() {
         return;
     }
 
-    let num_lines = args[1].parse::<usize>().expect("Invalid input: expected integer");
-    let num_iterations = args.get(2).map(|s| s.parse::<usize>().expect("Invalid input: expected integer")).unwrap_or(1);
+    let num_lines = args[1]
+        .parse::<usize>()
+        .expect("Invalid input: expected integer");
+    let num_iterations = args
+        .get(2)
+        .map(|s| s.parse::<usize>().expect("Invalid input: expected integer"))
+        .unwrap_or(1);
 
     // Split the text file into lines
     let lines: Vec<&str> = file_str.lines().collect();
@@ -45,7 +50,7 @@ fn main() {
             .choose_multiple(&mut rng, num_lines)
             .cloned()
             .collect();
-        
+
         //convert to lower case
         print!("{}", selected_lines.join(" ").to_lowercase());
         print!("\t");
@@ -62,9 +67,20 @@ fn main() {
     //On average it will take half the time it takes to check all the permutations
     let time_to_crack_years = time_to_crack_seconds / (2.0 * seconds_per_year);
     println!();
-    println!("Selected {} words out of a list of size {}", selected_words, word_list_size);
-    println!("At 100 trillion checks per second this password could be cracked in {} years", time_to_crack_years);
-    println!("At 1 billion checks per second this password could be cracked in {} years", time_to_crack_years * 100_000.0);
-    println!("At 1 million checks per second this password could be cracked in {} years", time_to_crack_years * 100_000_000.0);
-
+    println!(
+        "Selected {} words out of a list of size {}",
+        selected_words, word_list_size
+    );
+    println!(
+        "At 1 billion checks per second this password could be cracked in {} years",
+        time_to_crack_years * 100_000.0
+    );
+    println!(
+        "At 1 million checks per second this password could be cracked in {} years",
+        time_to_crack_years * 100_000_000.0
+    );
+    println!(
+        "At 1 thousand checks per second this password could be cracked in {} years",
+        time_to_crack_years * 100_000_000_000.0
+    );
 }
